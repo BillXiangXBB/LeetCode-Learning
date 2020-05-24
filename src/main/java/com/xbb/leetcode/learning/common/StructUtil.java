@@ -21,19 +21,46 @@ public class StructUtil {
     }
 
     /**
+     * 数组转化为环形链表
+     *
+     * @param array 数组
+     * @param pos 环形链表起始位置
+     * @return 环形链表
+     */
+    public static ListNode arrayToCycleList(int[] array, int pos) {
+        if (array == null || array.length == 0) {
+            return null;
+        }
+        ListNode head = new ListNode(array[0]);
+        ListNode prev = head;
+        for (int i = 1; i < array.length; i++) {
+            prev.next = new ListNode(array[i]);
+            prev = prev.next;
+        }
+        ListNode cycle = head;
+        int index = 0;
+        while (index != pos) {
+            cycle = cycle.next;
+            index++;
+        }
+        prev.next = cycle;
+        return head;
+    }
+
+    /**
      * 打印链表
      *
-     * @param first 首节点
+     * @param head 表头
      */
-    public static void printList(ListNode first) {
-        if (first == null) {
+    public static void printList(ListNode head) {
+        if (head == null) {
             System.out.println("null");
             return;
         }
         StringBuilder list = new StringBuilder();
-        while (first != null) {
-            list.append(first.val).append(" -> ");
-            first = first.next;
+        while (head != null) {
+            list.append(head.val).append(" -> ");
+            head = head.next;
         }
         list.append("null");
         System.out.println(list.toString());
