@@ -7,11 +7,13 @@ import junit.framework.TestCase;
 public class IntersectionNodeTest extends TestCase {
     private IntersectionNode node;
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         node = new IntersectionNode();
     }
 
+    @Override
     public void tearDown() throws Exception {
         super.tearDown();
         node = null;

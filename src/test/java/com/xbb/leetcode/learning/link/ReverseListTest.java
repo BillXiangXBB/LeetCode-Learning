@@ -9,12 +9,14 @@ public class ReverseListTest extends TestCase {
 
     private int[] arr;
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         reverse = new ReverseList();
         arr = new int[] {1, 2, 3, 4, 5};
     }
 
+    @Override
     public void tearDown() throws Exception {
         super.tearDown();
         reverse = null;

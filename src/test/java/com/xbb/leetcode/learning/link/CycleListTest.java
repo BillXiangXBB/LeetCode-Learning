@@ -7,11 +7,13 @@ import junit.framework.TestCase;
 public class CycleListTest extends TestCase {
     private CycleList cycleList;
 
+    @Override
     public void setUp() throws Exception {
         super.setUp();
         cycleList = new CycleList();
     }
 
+    @Override
     public void tearDown() throws Exception {
         super.tearDown();
         cycleList = null;
