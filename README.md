@@ -5,4 +5,5 @@
 * LeetCode题目题解
 * 常用数据结构
     + [链表](./doc/struct/link.md)
+    + [二叉树](./doc/struct/binary-tree.md)
 * 常用算法总结

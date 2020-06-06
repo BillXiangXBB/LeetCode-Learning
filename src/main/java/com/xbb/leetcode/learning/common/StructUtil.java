@@ -79,6 +79,43 @@ public class StructUtil {
         return arrayToTree(array, 0);
     }
 
+    /**
+     * 打印二叉树
+     *
+     * @param root 根节点
+     */
+    public static void printTree(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        int depth = treeDepth(root);
+        String[][] result = new String[depth][(1 << depth) - 1];
+        printTree(result, root, 0, (1 << (depth - 1)) - 1, 1);
+        for (int i = 0; i < depth; i++) {
+            for (int j = 0; j < (1 << depth) - 1; j++) {
+                if (result[i][j] != null) {
+                    System.out.print(result[i][j]);
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.print("\n");
+        }
+    }
+
+    /**
+     * 计算二叉树高度
+     *
+     * @param root 根节点
+     * @return 二叉树高度
+     */
+    public static int treeDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return Math.max(treeDepth(root.left), treeDepth(root.right)) + 1;
+    }
+
     private static ListNode arrayToList(int[] array, int index) {
         if (index >= array.length) {
             return null;
@@ -96,5 +133,16 @@ public class StructUtil {
         root.left = arrayToTree(array, 2 * index + 1);
         root.right = arrayToTree(array, 2 * index + 2);
         return root;
+    }
+
+    private static void printTree(String[][] result, TreeNode root, int row, int col, int depth) {
+        if (root == null) {
+            return;
+        }
+        if (row < result.length && col < result[row].length) {
+            result[row][col] = root.val + "";
+        }
+        printTree(result, root.left, row + 1, col - ((int)Math.pow(2, depth) - 1) - 1, depth - 1);
+        printTree(result, root.right, row + 1, col + ((int)Math.pow(2, depth) - 1) + 1, depth - 1);
     }
 }
